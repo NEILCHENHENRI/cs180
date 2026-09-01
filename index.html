@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CS 180 — Neil Chen</title>
+  <meta name="description" content="CS 180: Introduction to Computer Vision and Computational Photography." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
+  <style>
+    :root{
+      --blue:#2028b4;
+      --paper:#fff;
+      --ink:#2028b4;
+      --line:rgba(32,40,180,.28);
+      --pad:clamp(18px,2.2vw,34px);
+      --serif: "Instrument Serif", "Times New Roman", Times, serif;
+      --display: "Cinzel", "Times New Roman", Times, serif;
+      --sans: "Inter", Arial, Helvetica, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:#fff;
+      color:var(--ink);
+      font-family:var(--sans);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    button,a{touch-action:manipulation}
+
+    .stage{
+      width:min(1760px,100%);
+      margin:0 auto;
+      background:var(--paper);
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .topbar{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:24px;
+      align-items:start;
+      padding:18px var(--pad) 12px;
+      border-bottom:1px solid var(--line);
+      font-size:clamp(12px,.82vw,14px);
+      line-height:1.25;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .hero{
+      min-height:820px;
+      position:relative;
+      padding:18px var(--pad) 0;
+      overflow:hidden;
+    }
+
+    .intro{
+      width:min(430px,78vw);
+      font-size:clamp(30px,1.05vw,40px);
+      line-height:1.18;
+      position:relative;
+      z-index:3;
+    }
+
+    .service-card{
+      position:absolute;
+      right:var(--pad);
+      top:54px;
+      width:min(47vw,700px);
+      height:340px;
+      background:var(--blue);
+      color:var(--paper);
+      overflow:hidden;
+    }
+
+    @media (min-width:761px){
+      .intro{
+        position:absolute;
+        top:54px;
+        height:340px;
+        margin:0;
+        display:flex;
+        align-items:center;
+      }
+    }
+
+    .service-card h2{
+      position:absolute;
+      left:50%;
+      bottom:10px;
+      transform:translateX(-50%);
+      margin:0;
+      font-family:var(--serif);
+      font-weight:400;
+      font-size:clamp(30px,3.2vw,58px);
+      white-space:nowrap;
+    }
+
+    .pill{
+      position:absolute;
+      display:inline-block;
+      padding:8px 15px;
+      border-radius:999px;
+      background:var(--paper);
+      color:var(--blue);
+      font-family:var(--serif);
+      font-size:clamp(12px,1.05vw,17px);
+      white-space:nowrap;
+      will-change:transform;
+    }
+
+    .p1{left:10%;top:54%;transform:rotate(-22deg)}
+    .p2{left:34%;top:52%;transform:rotate(-4deg)}
+    .p3{left:52%;top:60%;transform:rotate(4deg)}
+    .p4{left:66%;top:43%;transform:rotate(12deg)}
+    .p5{left:44%;top:37%;transform:rotate(8deg)}
+    .p6{left:74%;top:65%;transform:rotate(-14deg)}
+
+    .hero-title{
+      position:absolute;
+      left:50%;
+      bottom:24px;
+      margin:0;
+      font-family:var(--display);
+      font-weight:500;
+      font-size:clamp(110px,18.6vw,335px);
+      line-height:1;
+      letter-spacing:-.04em;
+      white-space:nowrap;
+      width:max-content;
+      text-align:center;
+      transform:translateX(-50%);
+      transform-origin:center bottom;
+      will-change:transform;
+      z-index:2;
+    }
+
+    .selected{
+      padding:38px var(--pad) 22px;
+      border-top:1px solid var(--line);
+      position:relative;
+    }
+
+    .selected-label{
+      display:flex;
+      justify-content:flex-end;
+      font-family:var(--serif);
+      font-size:clamp(15px,1vw,18px);
+      margin-bottom:12px;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .project{
+      border-top:1px solid var(--line);
+      overflow:hidden;
+    }
+
+    .thumb{
+      aspect-ratio:4240/2384;
+      position:relative;
+      overflow:hidden;
+      background:#d7d5cc;
+    }
+
+    .thumb::after{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 65% 38%, rgba(255,255,255,.7), transparent 12%),
+        linear-gradient(135deg, rgba(32,40,180,.12), transparent 40%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+
+    .thumb.one{
+      background:
+        linear-gradient(180deg,rgba(8,25,55,.1),rgba(8,25,55,.1)),
+        linear-gradient(160deg,#0e2446 0 35%,#c7442f 35% 67%,#b72022 67% 100%);
+    }
+
+    .thumb.two{
+      background:
+        radial-gradient(circle at 68% 32%,#111 0 8%,transparent 8.5%),
+        linear-gradient(110deg,#e2e0da 0 52%,#878787 52% 67%,#efede8 67% 100%);
+      filter:grayscale(1);
+    }
+
+    .thumb.three{
+      background:
+        radial-gradient(ellipse at 42% 62%,#081021 0 8%,transparent 9%),
+        linear-gradient(140deg,#b2c7d9 0 47%,#56748f 47% 62%,#c9d5df 62% 100%);
+    }
+
+    .thumb.four{
+      background:
+        repeating-radial-gradient(ellipse at 50% 50%,#efede8 0 3%,#202020 3.5% 6%,#efede8 6.5% 9%);
+      filter:blur(.25px);
+    }
+
+    .project-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:7px 0 22px;
+      font-family:var(--serif);
+      font-size:clamp(14px,.9vw,16px);
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1.25fr;
+      gap:34px;
+      padding:54px var(--pad) 66px;
+      border-top:1px solid var(--line);
+      align-items:start;
+    }
+
+    .about h2{
+      font-family:var(--serif);
+      font-size:clamp(16px,1vw,19px);
+      font-weight:400;
+      margin:0;
+    }
+
+    .about-copy{
+      font-family:var(--serif);
+      font-size:clamp(25px,2.5vw,44px);
+      line-height:1.03;
+      letter-spacing:-.025em;
+      max-width:780px;
+      margin:0;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:34px;
+      font-family:var(--serif);
+    }
+    .stat b{
+      display:block;
+      font-size:clamp(28px,3vw,52px);
+      font-weight:400;
+    }
+    .stat span{font-size:clamp(12px,.82vw,14px)}
+
+    .footer{
+      position:relative;
+      background:var(--blue);
+      color:var(--paper);
+      min-height:410px;
+      padding:44px var(--pad) 22px;
+      overflow:hidden;
+    }
+    .footer-copy{
+      margin-left:auto;
+      width:min(430px,72vw);
+      font-family:var(--serif);
+      font-size:clamp(21px,2vw,34px);
+      line-height:1.05;
+    }
+    .footer-title{
+      position:absolute;
+      left:var(--pad);
+      bottom:.03em;
+      font-family:var(--serif);
+      font-size:clamp(100px,14vw,235px);
+      line-height:.84;
+      letter-spacing:-.06em;
+      white-space:nowrap;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(48px);
+      transition:
+        opacity 1.6s cubic-bezier(.2,0,.15,1),
+        transform 1.9s cubic-bezier(.2,0,.15,1);
+    }
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (hover:hover) and (pointer:fine){
+      .project .thumb{transition:transform .7s cubic-bezier(.16,1,.3,1)}
+      .project:hover .thumb{transform:scale(1.025)}
+      .nav a{transition:opacity .2s ease}
+      .nav a:hover{opacity:.45}
+    }
+
+    @media (max-width:760px){
+      .topbar{grid-template-columns:1fr}
+      .nav{justify-content:flex-start}
+      .hero{min-height:640px}
+      .service-card{
+        top:112px;
+        left:var(--pad);
+        right:auto;
+        width:calc(100% - var(--pad)*2);
+        height:260px;
+      }
+      .hero-title{font-size:clamp(64px,17.5vw,96px)}
+      .project-grid,.about{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .footer{min-height:330px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .pill{transform:none!important}
+      .hero-title{transform:translateX(-50%)!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <header class="topbar">
+      <div>Neil Chen · CS 180 · Fall 2026</div>
+    </header>
+
+    <section class="hero" id="home">
+      <p class="intro">
+        CS 180<br>
+        Introduction to Computer Vision and Computational Photography
+      </p>
+
+      <div class="service-card" aria-hidden="true"></div>
+
+      <h1 class="hero-title">Neil Chen</h1>
+    </section>
+
+    <section class="selected" id="work">
+      <div class="project-grid">
+        <a class="project reveal" href="project0.html">
+          <div class="thumb">
+            <img src="assets/images/projects/project-0/cover.jpeg" alt="Portrait in front of green mountain scenery" loading="lazy">
+          </div>
+          <div class="project-meta"><span>Project 0 · Becoming Friends with Your Camera</span><span>↗</span></div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const hero = document.querySelector('.hero');
+      const pills = [...document.querySelectorAll('.pill')];
+
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) entry.target.classList.add('in');
+        }
+      }, { threshold: .12 });
+
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      if (!reduced) {
+        if (window.Lenis && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          new Lenis({
+            autoRaf: true,
+            smoothWheel: true,
+            lerp: .1,
+            wheelMultiplier: 1
+          });
+        }
+
+        let targetProgress = 0;
+        let currentProgress = 0;
+        let velocity = 0;
+        let frame = 0;
+
+        function readProgress() {
+          const r = hero.getBoundingClientRect();
+          targetProgress = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height)));
+        }
+
+        function draw(progress) {
+          pills.forEach((pill, i) => {
+            const drift = Number(pill.dataset.drift || 0);
+            const direction = i % 2 ? 1 : -1;
+            const x = progress * drift;
+            const y = progress * direction * 22;
+            const baseRotations = [-22,-4,4,12,8,-14];
+            const rot = baseRotations[i] + progress * direction * 8;
+            pill.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+          });
+        }
+
+        function settle() {
+          const distance = targetProgress - currentProgress;
+          velocity = (velocity + distance * .008) * .88;
+          currentProgress = Math.max(0, Math.min(1, currentProgress + velocity));
+          draw(currentProgress);
+
+          if (Math.abs(distance) > .00015 || Math.abs(velocity) > .00015) {
+            frame = requestAnimationFrame(settle);
+          } else {
+            currentProgress = targetProgress;
+            velocity = 0;
+            draw(currentProgress);
+            frame = 0;
+          }
+        }
+
+        function requestAnimate() {
+          readProgress();
+          if (!frame) frame = requestAnimationFrame(settle);
+        }
+
+        addEventListener('scroll', requestAnimate, { passive:true });
+        addEventListener('resize', requestAnimate);
+        readProgress();
+        currentProgress = targetProgress;
+        draw(currentProgress);
+      } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      }
+    })();
+  </script>
+</body>
+</html>

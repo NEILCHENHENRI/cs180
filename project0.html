@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
   <style>
     :root{
       --blue:#2028b4;
@@ -74,11 +75,50 @@
       gap:clamp(32px,7vw,120px);
       padding:clamp(54px,7vw,110px) var(--pad);
     }
+    .content + .content{border-top:1px solid var(--line)}
     .content h2{
       margin:0;
       font-family:var(--serif);
       font-size:clamp(20px,1.7vw,30px);
       font-weight:400;
+    }
+    .portrait-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:clamp(10px,1vw,18px);
+      width:80%;
+      margin:0;
+    }
+    .portrait-grid figure{margin:0}
+    .portrait-grid img{
+      display:block;
+      width:100%;
+      aspect-ratio:1376/2448;
+      object-fit:cover;
+    }
+    .portrait-grid figcaption{
+      padding-top:10px;
+      font-family:var(--serif);
+      font-size:clamp(16px,1.25vw,22px);
+      text-align:center;
+    }
+    .comparison-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:clamp(10px,1vw,18px);
+    }
+    .comparison-grid figure{margin:0}
+    .comparison-grid img{
+      display:block;
+      width:100%;
+      aspect-ratio:4096/2656;
+      object-fit:cover;
+    }
+    .comparison-grid figcaption{
+      padding-top:10px;
+      font-family:var(--serif);
+      font-size:clamp(16px,1.25vw,22px);
+      text-align:center;
     }
     .video-grid{
       display:grid;
@@ -92,17 +132,34 @@
       object-fit:cover;
       background:#000;
     }
-    .video-note{
+    .section-note{
       max-width:900px;
       margin:18px 0 0;
       font-size:clamp(13px,.9vw,16px);
       line-height:1.4;
     }
+    .reveal{
+      opacity:0;
+      transform:translateY(48px);
+      transition:
+        opacity 1.6s cubic-bezier(.2,0,.15,1),
+        transform 1.9s cubic-bezier(.2,0,.15,1);
+    }
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0);
+    }
 
     @media (max-width:760px){
       .topbar{align-items:flex-start}
       .content{grid-template-columns:1fr}
+      .portrait-grid{grid-template-columns:1fr;width:78%}
+      .comparison-grid{grid-template-columns:1fr}
       .video-grid{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
     }
   </style>
 </head>
@@ -118,7 +175,49 @@
       <h1>Becoming Friends<br>with Your Camera</h1>
     </section>
 
-    <section class="content">
+    <section class="content reveal">
+      <h2>Part 1 →</h2>
+      <div class="part-media">
+        <div class="portrait-grid">
+          <figure>
+            <img src="assets/images/projects/project-0/part-1/23mm-portrait.jpg" alt="Close portrait photographed at 23mm" loading="lazy">
+            <figcaption>23mm @ ≈30cm</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/projects/project-0/part-1/35mm-portrait.jpg" alt="Portrait photographed at 35mm" loading="lazy">
+            <figcaption>35mm @ ≈50cm</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/projects/project-0/part-1/50mm-portrait.jpg" alt="Portrait photographed at 50mm" loading="lazy">
+            <figcaption>50mm @ ≈70cm</figcaption>
+          </figure>
+        </div>
+        <p class="section-note">
+          Up close, the nose looks larger and the face looks stretched. Moving the camera back makes the face look more natural, while zooming in keeps it the same size in the photo.
+        </p>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2>Part 2 →</h2>
+      <div class="part-media">
+        <div class="comparison-grid">
+          <figure>
+            <img src="assets/images/projects/project-0/part-2/far-70mm.jpg" alt="Building photographed from farther away at 70mm" loading="lazy">
+            <figcaption>Farther Away</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/projects/project-0/part-2/near-46mm.jpg" alt="Building photographed from closer at 46mm" loading="lazy">
+            <figcaption>Closer</figcaption>
+          </figure>
+        </div>
+        <p class="section-note">
+          When I stood farther away and zoomed in, the objects in front and back looked closer together. When I moved closer and zoomed out, the space between them became more obvious. Even though the front object stayed about the same size, the background changed because I moved the camera.
+        </p>
+      </div>
+    </section>
+
+    <section class="content reveal">
       <h2>Part 3 →</h2>
       <div class="part-media">
         <div class="video-grid">
@@ -131,11 +230,41 @@
             Your browser does not support embedded video.
           </video>
         </div>
-        <p class="video-note">
+        <p class="section-note">
           Filmed on an iPhone 14 Pro in Xinjiang, China. The vehicle moved forward as the camera zoomed out, creating a dolly-zoom effect. Exact focal-length values were not recorded.
         </p>
       </div>
     </section>
   </main>
+
+  <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveals = document.querySelectorAll('.reveal');
+
+      if (reduced) {
+        reveals.forEach(el => el.classList.add('in'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('in');
+        });
+      }, { threshold:.12 });
+
+      reveals.forEach(el => observer.observe(el));
+
+      if (window.Lenis && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        new Lenis({
+          autoRaf:true,
+          smoothWheel:true,
+          lerp:.1,
+          wheelMultiplier:1
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

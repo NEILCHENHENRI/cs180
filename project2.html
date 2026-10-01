@@ -59,7 +59,7 @@
     .gallery.hybrid img{aspect-ratio:8/7}
     .gallery.hybrid-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
     .hybrid-open{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;cursor:zoom-in}
-    .hybrid-open::after{content:"Open full view";position:absolute;right:10px;bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(12,13,22,.82);color:#fff;font:500 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease}
+    .hybrid-open::after{content:"View in full screen";position:absolute;right:10px;bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(12,13,22,.82);color:#fff;font:500 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease}
     .hybrid-open:hover::after,.hybrid-open:focus-visible::after{opacity:1;transform:translateY(0)}
     .hybrid-open:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
     .gallery.tall img{aspect-ratio:3/4}
@@ -76,12 +76,14 @@
     .hybrid-modal-shell{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.75fr);gap:clamp(20px,2vw,36px);width:min(1600px,100%);min-height:calc(100vh - clamp(78px,7vw,116px));margin:0 auto;align-items:center}
     .hybrid-modal-details{align-self:center;padding:clamp(22px,2vw,34px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .hybrid-modal-title{margin:0;font-family:var(--serif);font-size:clamp(24px,2.2vw,40px);font-weight:400}
+    .hybrid-modal-subtitle{margin:8px 0 0;font-size:clamp(12px,.82vw,14px);line-height:1.4;text-transform:uppercase;letter-spacing:.05em}
     .hybrid-modal-close{position:fixed;top:20px;right:var(--pad);z-index:1;padding:0;border:0;background:none;color:var(--blue);font:500 clamp(13px,.88vw,15px)/1 var(--sans);text-transform:uppercase;cursor:pointer}
     .hybrid-modal-close:hover{opacity:.55}
-    .hybrid-zoom-stage{display:flex;align-items:center;justify-content:center;height:calc(100vh - clamp(90px,8vw,130px));min-height:0;overflow:hidden;background:#fff}
+    .hybrid-zoom-stage{display:flex;align-items:center;justify-content:center;height:calc(100vh - clamp(90px,8vw,130px));min-height:0;overflow:hidden;background:var(--white)}
     .hybrid-zoom-stage img{width:var(--hybrid-size,58%);max-height:100%;object-fit:contain;transition:width .24s ease}
     .hybrid-zoom-identities{display:flex;justify-content:space-between;gap:20px;margin:24px 0 0;font-family:var(--serif);font-size:clamp(17px,1.25vw,21px)}
     .hybrid-zoom-controls{display:grid;grid-template-columns:auto minmax(100px,1fr) auto;align-items:center;gap:14px;margin-top:14px;font-size:clamp(11px,.78vw,13px);text-transform:uppercase;letter-spacing:.035em}
+    .hybrid-zoom-identities[hidden],.hybrid-zoom-controls[hidden]{display:none}
     .hybrid-zoom-controls input{width:100%;accent-color:var(--blue)}
     .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:30px;background:var(--line);border:1px solid var(--line)}
     .metrics.two{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -113,7 +115,7 @@
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
   </style>
-  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="theme.css?v=2">
   <script src="theme.js"></script>
 </head>
 <body>
@@ -333,6 +335,7 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
         <p class="note" data-content-html="cruyffHighSweepExplanation"></p>
         <div class="gallery three hybrid" data-gallery="cruyffHighCutoffSweep"></div>
 
+        <h3 data-content="cruyffFinalHeading"></h3>
         <div class="gallery hybrid hybrid-pair" data-gallery="cruyffFinal" data-hybrid-pair="cruyff"></div>
 
         <h3 data-content="cruyffFourierHeading"></h3>
@@ -392,11 +395,11 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
 
         <h3 data-content="orapleHeading"></h3>
         <p class="note" data-content="orapleExplanation"></p>
-        <div class="gallery three square" data-gallery="orapleBlend"></div>
+        <div class="gallery three square" data-gallery="orapleBlend" data-full-view="orapleHeading"></div>
 
         <h3 data-content="eyeHandHeading"></h3>
         <p class="note" data-content="eyeHandExplanation"></p>
-        <div class="gallery three tall" data-gallery="eyeHandBlend"></div>
+        <div class="gallery three tall" data-gallery="eyeHandBlend" data-full-view="eyeHandHeading"></div>
 
         <h3 data-content="eyeHandStackHeading"></h3>
         <p class="note" data-content="eyeHandStackExplanation"></p>
@@ -404,7 +407,7 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
 
         <h3 data-content="moonFrameHeading"></h3>
         <p class="note" data-content="moonFrameExplanation"></p>
-        <div class="gallery four" data-gallery="moonFrameBlend"></div>
+        <div class="gallery four" data-gallery="moonFrameBlend" data-full-view="moonFrameHeading"></div>
       </div>
     </section>
 
@@ -423,7 +426,7 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
     </section>
   </main>
 
-  <script src="project2-content.js?v=21"></script>
+  <script src="project2-content.js?v=23"></script>
   <script src="project2-metrics-data.js?v=6"></script>
   <script src="project2-metrics.js?v=5"></script>
   <script>
@@ -445,14 +448,17 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
           image.alt = caption
           image.loading = 'lazy'
           label.textContent = caption
-          if (gallery.dataset.hybridPair && path.includes('_hybrid')) {
+          const hybridResult = gallery.dataset.hybridPair && path.includes('_hybrid')
+          const fullViewResult = gallery.dataset.fullView && path.endsWith('_blend.jpg')
+          if (hybridResult || fullViewResult) {
             const openButton = document.createElement('button')
             openButton.type = 'button'
             openButton.className = 'hybrid-open'
-            openButton.dataset.hybridOpen = gallery.dataset.hybridPair
-            openButton.dataset.hybridImage = path
-            openButton.dataset.hybridCaption = caption
-            openButton.setAttribute('aria-label', `Open ${caption.toLowerCase()} full view`)
+            if (hybridResult) openButton.dataset.hybridOpen = gallery.dataset.hybridPair
+            if (fullViewResult) openButton.dataset.fullViewOpen = gallery.dataset.fullView
+            openButton.dataset.fullViewImage = path
+            openButton.dataset.fullViewCaption = caption
+            openButton.setAttribute('aria-label', `View ${caption.toLowerCase()} in full screen`)
             openButton.appendChild(image)
             figure.append(openButton, label)
           } else {
@@ -481,6 +487,7 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
       const hybridShell = document.createElement('div')
       const hybridDetails = document.createElement('div')
       const hybridTitle = document.createElement('h4')
+      const hybridSubtitle = document.createElement('p')
       const hybridClose = document.createElement('button')
       const hybridStage = document.createElement('div')
       const hybridImage = document.createElement('img')
@@ -495,10 +502,11 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
       hybridShell.className = 'hybrid-modal-shell'
       hybridDetails.className = 'hybrid-modal-details'
       hybridTitle.className = 'hybrid-modal-title'
+      hybridSubtitle.className = 'hybrid-modal-subtitle'
       hybridClose.className = 'hybrid-modal-close'
       hybridClose.type = 'button'
       hybridClose.textContent = 'Close ×'
-      hybridClose.setAttribute('aria-label', 'Close full view')
+      hybridClose.setAttribute('aria-label', 'Close full-screen view')
       hybridStage.className = 'hybrid-zoom-stage'
       hybridIdentities.className = 'hybrid-zoom-identities'
       hybridControls.className = 'hybrid-zoom-controls'
@@ -517,7 +525,7 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
       hybridStage.appendChild(hybridImage)
       hybridIdentities.append(hybridFarIdentity, hybridCloseIdentity)
       hybridControls.append(hybridFarLabel, hybridSlider, hybridNearLabel)
-      hybridDetails.append(hybridTitle, hybridIdentities, hybridControls)
+      hybridDetails.append(hybridTitle, hybridSubtitle, hybridIdentities, hybridControls)
       hybridShell.append(hybridStage, hybridDetails)
       hybridModal.append(hybridClose, hybridShell)
       document.body.appendChild(hybridModal)
@@ -531,12 +539,31 @@ dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
           const demo = content.hybridDemos?.[button.dataset.hybridOpen]
           if (!demo) return
           previousHybridFocus = document.activeElement
-          hybridTitle.textContent = `${demo.alt.replace(' hybrid image', '')} · ${button.dataset.hybridCaption}`
-          hybridImage.src = `assets/images/projects/project-2/${button.dataset.hybridImage}`
-          hybridImage.alt = `${button.dataset.hybridCaption}, ${demo.alt}`
+          hybridTitle.textContent = demo.alt.replace(' hybrid image', '')
+          hybridSubtitle.textContent = button.dataset.fullViewCaption
+          hybridImage.src = `assets/images/projects/project-2/${button.dataset.fullViewImage}`
+          hybridImage.alt = `${button.dataset.fullViewCaption}, ${demo.alt}`
+          hybridIdentities.hidden = false
+          hybridControls.hidden = false
           hybridFarIdentity.textContent = demo.far
           hybridCloseIdentity.textContent = demo.close
           hybridSlider.value = String(demo.start)
+          updateHybridSize()
+          hybridModal.showModal()
+          hybridClose.focus()
+        })
+      })
+      document.querySelectorAll('[data-full-view-open]').forEach(button => {
+        button.addEventListener('click', () => {
+          previousHybridFocus = document.activeElement
+          const heading = content[button.dataset.fullViewOpen] || button.dataset.fullViewCaption
+          hybridTitle.textContent = heading
+          hybridSubtitle.textContent = content.finalBlendSubtitle
+          hybridImage.src = `assets/images/projects/project-2/${button.dataset.fullViewImage}`
+          hybridImage.alt = button.dataset.fullViewCaption
+          hybridIdentities.hidden = true
+          hybridControls.hidden = true
+          hybridSlider.value = '100'
           updateHybridSize()
           hybridModal.showModal()
           hybridClose.focus()

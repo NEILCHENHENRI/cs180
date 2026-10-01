@@ -22,6 +22,16 @@ body,.page,.stage,.metric,.lightbox{
   transition:background-color .35s ease,color .35s ease,border-color .35s ease;
 }
 
+.page{overflow:clip}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:var(--theme-surface);
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+}
+
 html[data-theme="dark"] body,
 html[data-theme="dark"] .page,
 html[data-theme="dark"] .stage{

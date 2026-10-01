@@ -80,6 +80,8 @@ window.project2Content = {
   cruyffLowSweepExplanation: `I first held Modrić’s high-pass setting at \\(\\sigma_{high}=4\\) and tried \\(\\sigma_{low}=6,10,14\\) for Cruyff. At 6, Cruyff keeps too much fine facial and hair detail, which competes with Modrić up close. At 14, Cruyff becomes overly diffuse and loses useful distant structure. I kept 10 as the middle ground.`,
   cruyffHighSweepHeading: "2. High-pass sweep for Modrić",
   cruyffHighSweepExplanation: `With Cruyff fixed at \\(\\sigma_{low}=10\\), I then tried \\(\\sigma_{high}=2,4,6\\) for Modrić. At 2, too little detail survives and Modrić is hard to recognize up close. At 6, broader features survive shrinking and interfere with Cruyff from far away. I therefore selected \\(\\sigma_{high}=4\\). The final pair is \\(\\sigma_{low}=10\\), \\(\\sigma_{high}=4\\).`,
+  cruyffFinalHeading: "Final results",
+  finalBlendSubtitle: "Final blend",
   cruyffProcessHeading: "Alignment and filtering",
   cruyffFourierHeading: "Fourier-domain explanation",
   cruyffFourierExplanation: `The centered bright region in each log-magnitude spectrum represents low spatial frequencies. Gaussian filtering concentrates Cruyff’s spectrum near that center, while subtracting the Gaussian suppresses Modrić’s center and retains energy farther out. The hybrid spectrum contains both structures: a bright low-frequency core plus the distributed high-frequency detail.`,

@@ -1,0 +1,20 @@
+{
+  "image_shape": [
+    720,
+    405
+  ],
+  "boundary_handling": "same-size output with explicit zero padding",
+  "kernel_handling": "kernel flipped vertically and horizontally",
+  "comparison_implementation": "scipy.signal.convolve2d",
+  "seconds": {
+    "four_loops_9x9": 6.8224374579731375,
+    "two_loops_9x9": 0.632674666994717,
+    "scipy_9x9": 0.028767416020855308
+  },
+  "max_abs_error_vs_scipy": {
+    "four_loops_9x9": 1.7763568394002505e-15,
+    "two_loops_9x9": 6.661338147750939e-16,
+    "four_loops_asymmetric_test": 0.0,
+    "two_loops_asymmetric_test": 0.0
+  }
+}

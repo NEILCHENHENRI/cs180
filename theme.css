@@ -1,0 +1,96 @@
+:root{
+  color-scheme:light;
+  --theme-surface:#fff;
+  --theme-code:#f5f5ff;
+  --theme-code-ink:#11175f;
+}
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --blue:#b8bcff;
+  --ink:#b8bcff;
+  --white:#0c0d16;
+  --paper:#0c0d16;
+  --soft:#171929;
+  --line:rgba(184,188,255,.25);
+  --theme-surface:#0c0d16;
+  --theme-code:#171929;
+  --theme-code-ink:#d9dbff;
+}
+
+body,.page,.stage,.metric,.lightbox{
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .stage{
+  background:var(--theme-surface);
+}
+
+html[data-theme="dark"] pre{
+  background:var(--theme-code);
+  color:var(--theme-code-ink);
+}
+
+html[data-theme="dark"] .figure img,
+html[data-theme="dark"] .image-grid img,
+html[data-theme="dark"] .gallery img{
+  background:#fff;
+}
+
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(12px,1.3vw,22px);
+}
+
+.theme-toggle{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  transition:background-color .2s ease,color .2s ease,transform .25s ease,border-color .2s ease;
+}
+
+.theme-toggle:hover{
+  background:var(--blue);
+  color:var(--white,var(--paper));
+  transform:rotate(8deg);
+}
+
+.theme-toggle:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:3px;
+}
+
+.theme-toggle svg{
+  width:17px;
+  height:17px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.theme-toggle .sun-icon{display:none}
+html[data-theme="dark"] .theme-toggle .sun-icon{display:block}
+html[data-theme="dark"] .theme-toggle .moon-icon{display:none}
+
+@media(max-width:760px){
+  .topbar-actions{gap:10px}
+  .theme-toggle{width:30px;height:30px;flex-basis:30px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  body,.page,.stage,.metric,.lightbox,.theme-toggle{transition:none}
+}

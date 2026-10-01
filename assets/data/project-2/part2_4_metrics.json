@@ -1,0 +1,50 @@
+{
+  "levels": 5,
+  "base_sigma": 2.0,
+  "oraple_shape": [
+    300,
+    300,
+    3
+  ],
+  "custom_levels": 6,
+  "custom_sigma": 3.0,
+  "custom_blends": {
+    "eye_hand": {
+      "mask": "rotated ellipse",
+      "shape": [
+        1024,
+        768,
+        3
+      ],
+      "favorite": true,
+      "figure_levels_shown": [
+        0,
+        2,
+        4
+      ],
+      "figure_panels": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l"
+      ]
+    },
+    "moon_frame": {
+      "mask": "circle",
+      "shape": [
+        1045,
+        1280,
+        3
+      ],
+      "favorite": false
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "output_size": [
+    700,
+    800
+  ],
+  "pairs": {
+    "derek_nutmeg": {
+      "low_sigma": 12.0,
+      "high_sigma": 8.0,
+      "high_gain": 1.45,
+      "blend_gain": 0.55,
+      "eye_distance": 0.24,
+      "eye_height": 0.34,
+      "low_eye_points": [
+        [
+          300,
+          344
+        ],
+        [
+          439,
+          331
+        ]
+      ],
+      "high_eye_points": [
+        [
+          608,
+          284
+        ],
+        [
+          751,
+          362
+        ]
+      ],
+      "primary_color_strategy": "color in low-frequency content only"
+    },
+    "cruyff_modric": {
+      "low_sigma": 10.0,
+      "high_sigma": 4.0,
+      "high_gain": 1.0,
+      "blend_gain": 1.0,
+      "eye_distance": 0.24,
+      "eye_height": 0.34,
+      "low_eye_points": [
+        [
+          333,
+          401
+        ],
+        [
+          525,
+          393
+        ]
+      ],
+      "high_eye_points": [
+        [
+          185,
+          203
+        ],
+        [
+          255,
+          201
+        ]
+      ],
+      "primary_color_strategy": "color in low-frequency content only",
+      "cutoff_experiment": {
+        "low_pass": [
+          {
+            "low_sigma": 6.0,
+            "high_sigma": 4.0
+          },
+          {
+            "low_sigma": 10.0,
+            "high_sigma": 4.0
+          },
+          {
+            "low_sigma": 14.0,
+            "high_sigma": 4.0
+          }
+        ],
+        "high_pass": [
+          {
+            "low_sigma": 10.0,
+            "high_sigma": 2.0
+          },
+          {
+            "low_sigma": 10.0,
+            "high_sigma": 4.0
+          },
+          {
+            "low_sigma": 10.0,
+            "high_sigma": 6.0
+          }
+        ]
+      },
+      "selected_cutoffs": {
+        "low_sigma": 10.0,
+        "high_sigma": 4.0
+      }
+    },
+    "mounet_keanu": {
+      "low_sigma": 11.0,
+      "high_sigma": 5.0,
+      "high_gain": 1.0,
+      "blend_gain": 1.0,
+      "eye_distance": 0.32,
+      "eye_height": 0.34,
+      "low_eye_points": [
+        [
+          465,
+          275
+        ],
+        [
+          559,
+          278
+        ]
+      ],
+      "high_eye_points": [
+        [
+          901,
+          1100
+        ],
+        [
+          1403,
+          1123
+        ]
+      ],
+      "primary_color_strategy": "color in low-frequency content only"
+    },
+    "morra_dinklage": {
+      "low_sigma": 10.0,
+      "high_sigma": 4.0,
+      "high_gain": 0.6,
+      "blend_gain": 1.0,
+      "eye_distance": 0.32,
+      "eye_height": 0.34,
+      "low_eye_points": [
+        [
+          250,
+          196
+        ],
+        [
+          410,
+          197
+        ]
+      ],
+      "high_eye_points": [
+        [
+          365,
+          360
+        ],
+        [
+          543,
+          365
+        ]
+      ],
+      "primary_color_strategy": "color in low-frequency content only"
+    }
+  }
+}

@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 2 — Fun with Filters and Frequencies</title>
+  <meta name="description" content="CS 180 Project 2: Fun with Filters and Frequencies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css">
+  <style>
+    :root{
+      --blue:#2028b4;
+      --white:#fff;
+      --soft:#f5f5ff;
+      --line:rgba(32,40,180,.28);
+      --pad:clamp(18px,2.2vw,34px);
+      --serif:"Instrument Serif","Times New Roman",serif;
+      --sans:"Inter",Arial,sans-serif;
+      --mono:"JetBrains Mono",monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--white);color:var(--blue);font-family:var(--sans)}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .page{width:min(1760px,100%);min-height:100vh;margin:0 auto;overflow:hidden}
+    .topbar{display:flex;justify-content:space-between;gap:24px;padding:18px var(--pad) 12px;border-bottom:1px solid var(--line);font-size:clamp(13px,.88vw,15px);line-height:1.25;text-transform:uppercase}
+    .back:hover{opacity:.5}
+    .hero{padding:clamp(36px,5vw,80px) var(--pad) clamp(38px,4vw,64px);border-bottom:1px solid var(--line)}
+    .eyebrow{margin:0;font-size:clamp(14px,1vw,18px);text-transform:uppercase}
+    h1{max-width:1500px;margin:clamp(22px,2.5vw,40px) 0 0;font-family:var(--serif);font-size:clamp(68px,10vw,170px);font-weight:400;line-height:.88;letter-spacing:-.045em}
+    .subtitle{margin:clamp(22px,2.5vw,40px) 0 0;font-family:var(--serif);font-size:clamp(20px,1.7vw,30px);line-height:1.1}
+    .content{display:grid;grid-template-columns:minmax(180px,.55fr) 1.45fr;gap:clamp(32px,7vw,120px);padding:clamp(54px,7vw,110px) var(--pad)}
+    .content + .content{border-top:1px solid var(--line)}
+    .content h2{margin:0;font-family:var(--serif);font-size:clamp(22px,1.8vw,32px);font-weight:400}
+    .part-media{min-width:0}
+    h3{margin:0 0 14px;font-family:var(--serif);font-size:clamp(28px,2.8vw,50px);font-weight:400;line-height:1}
+    h4{margin:28px 0 0;font-family:var(--serif);font-size:clamp(21px,1.7vw,30px);font-weight:400;line-height:1.1}
+    h3:not(:first-child){margin-top:clamp(54px,6vw,92px)}
+    p{font-size:clamp(14px,1vw,18px);line-height:1.62}
+    .lead{margin:0;max-width:940px;font-family:var(--serif);font-size:clamp(21px,1.8vw,31px);line-height:1.22}
+    .note{max-width:940px;margin:18px 0 0}
+    .equation{font-family:var(--serif);font-size:clamp(19px,1.45vw,25px)}
+    .figure{margin:clamp(28px,3vw,48px) 0 0}
+    .figure img{width:100%;height:auto;border:1px solid var(--line);background:#fff}
+    figcaption{padding-top:10px;font-family:var(--serif);font-size:clamp(16px,1.18vw,21px);line-height:1.35;text-align:center}
+    .image-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.4vw,24px);margin-top:clamp(28px,3vw,48px)}
+    .image-grid figure{margin:0}
+    .image-grid img{width:100%;aspect-ratio:1/1;object-fit:contain;border:1px solid var(--line);background:#fff}
+    .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.4vw,24px);margin-top:clamp(24px,2.6vw,42px)}
+    .gallery.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .gallery.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .gallery.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .gallery figure{min-width:0;margin:0}
+    .gallery img{width:100%;aspect-ratio:4/3;object-fit:contain;border:1px solid var(--line);background:#fff}
+    .gallery.square img{aspect-ratio:1/1}
+    .gallery.hybrid img{aspect-ratio:8/7}
+    .gallery.hybrid-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .hybrid-open{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;cursor:zoom-in}
+    .hybrid-open::after{content:"Open full view";position:absolute;right:10px;bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(12,13,22,.82);color:#fff;font:500 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease}
+    .hybrid-open:hover::after,.hybrid-open:focus-visible::after{opacity:1;transform:translateY(0)}
+    .hybrid-open:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+    .gallery.tall img{aspect-ratio:3/4}
+    .gallery figcaption{font-size:clamp(13px,.94vw,17px)}
+    .gallery.compact{max-width:860px;margin-right:auto}
+    .gallery.comparison{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .view-switcher{margin-top:clamp(26px,3vw,42px)}
+    .view-switcher-controls{display:flex;flex-wrap:wrap;gap:8px}
+    .view-switcher-controls button{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:inherit;font:500 clamp(11px,.75vw,13px)/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+    .view-switcher-controls button[aria-pressed="true"]{background:var(--blue);color:var(--white)}
+    .view-switcher-controls button:hover{opacity:.7}
+    .hybrid-modal{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:clamp(54px,5vw,82px) var(--pad) var(--pad);overflow-x:hidden;overflow-y:auto;border:0;background:var(--white);color:var(--blue)}
+    .hybrid-modal::backdrop{background:rgba(12,13,22,.3)}
+    .hybrid-modal-shell{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.75fr);gap:clamp(20px,2vw,36px);width:min(1600px,100%);min-height:calc(100vh - clamp(78px,7vw,116px));margin:0 auto;align-items:center}
+    .hybrid-modal-details{align-self:center;padding:clamp(22px,2vw,34px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .hybrid-modal-title{margin:0;font-family:var(--serif);font-size:clamp(24px,2.2vw,40px);font-weight:400}
+    .hybrid-modal-close{position:fixed;top:20px;right:var(--pad);z-index:1;padding:0;border:0;background:none;color:var(--blue);font:500 clamp(13px,.88vw,15px)/1 var(--sans);text-transform:uppercase;cursor:pointer}
+    .hybrid-modal-close:hover{opacity:.55}
+    .hybrid-zoom-stage{display:flex;align-items:center;justify-content:center;height:calc(100vh - clamp(90px,8vw,130px));min-height:0;overflow:hidden;background:#fff}
+    .hybrid-zoom-stage img{width:var(--hybrid-size,58%);max-height:100%;object-fit:contain;transition:width .24s ease}
+    .hybrid-zoom-identities{display:flex;justify-content:space-between;gap:20px;margin:24px 0 0;font-family:var(--serif);font-size:clamp(17px,1.25vw,21px)}
+    .hybrid-zoom-controls{display:grid;grid-template-columns:auto minmax(100px,1fr) auto;align-items:center;gap:14px;margin-top:14px;font-size:clamp(11px,.78vw,13px);text-transform:uppercase;letter-spacing:.035em}
+    .hybrid-zoom-controls input{width:100%;accent-color:var(--blue)}
+    .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:30px;background:var(--line);border:1px solid var(--line)}
+    .metrics.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .metrics.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .metrics.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .metric{background:var(--white);padding:20px}
+    .metric strong{display:block;font-family:var(--serif);font-size:clamp(27px,2.5vw,44px);font-weight:400}
+    .metric span{display:block;margin-top:5px;font-size:clamp(12px,.82vw,14px);line-height:1.4}
+    .source-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+    .source-list a{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:baseline;gap:clamp(18px,3vw,52px);padding:15px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(18px,1.4vw,25px);line-height:1.25}
+    .source-resolution{font-family:var(--sans);font-size:clamp(11px,.76vw,13px);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+    .source-list a:hover{opacity:.55}
+    .source-list a::after{content:"↗";font-family:var(--sans);font-size:.8em}
+    pre{margin:24px 0 0;padding:clamp(16px,2vw,28px);overflow:auto;border:1px solid var(--line);background:var(--soft);color:#11175f;font:clamp(11px,.77vw,14px)/1.65 var(--mono);tab-size:4}
+    code{font-family:var(--mono)}
+    .inline-code{padding:.08em .28em;background:var(--soft);font-size:.88em}
+    .reveal{opacity:0;transform:translateY(48px);transition:opacity 1.6s cubic-bezier(.2,0,.15,1),transform 1.9s cubic-bezier(.2,0,.15,1)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+    @media(max-width:760px){
+      .content{grid-template-columns:1fr}
+      .image-grid,.gallery,.gallery.three,.gallery.four,.gallery.five,.metrics,.metrics.two,.metrics.four,.metrics.five{grid-template-columns:1fr}
+      .gallery.comparison,.gallery.hybrid-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hybrid-modal{padding-top:58px}
+      .hybrid-modal-shell{display:block;min-height:0}
+      .hybrid-zoom-stage{height:58vh}
+      .hybrid-modal-details{margin-top:28px}
+      .hybrid-open::after{display:none}
+      h1{font-size:clamp(62px,19vw,100px)}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+  </style>
+  <link rel="stylesheet" href="theme.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div>Neil Chen · CS 180 · Fall 2026</div>
+      <a class="back" href="index.html">← Back</a>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow" data-content="eyebrow"></p>
+      <h1 data-content-html="title"></h1>
+      <p class="subtitle" data-content="subtitle"></p>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part11Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content="part11Lead"></p>
+        <p class="note" data-content-html="part11Method"></p>
+
+        <pre><code>def convolve_four_loops(image, kernel):
+    image, flipped, padded = _prepare(image, kernel)
+    kh, kw = flipped.shape
+    output = np.zeros_like(image, dtype=np.float64)
+
+    for row in range(image.shape[0]):
+        for col in range(image.shape[1]):
+            for krow in range(kh):
+                for kcol in range(kw):
+                    output[row, col] += (
+                        padded[row + krow, col + kcol]
+                        * flipped[krow, kcol]
+                    )
+    return output</code></pre>
+
+        <pre><code>def convolve_two_loops(image, kernel):
+    image, flipped, padded = _prepare(image, kernel)
+    kh, kw = flipped.shape
+    output = np.zeros_like(image, dtype=np.float64)
+
+    for row in range(image.shape[0]):
+        for col in range(image.shape[1]):
+            patch = padded[row:row + kh, col:col + kw]
+            output[row, col] = np.sum(patch * flipped)
+    return output</code></pre>
+
+        <figure class="figure">
+          <img src="assets/images/projects/project-2/part-1-1/part1_1_results.jpg" alt="Color portrait, box-filtered portrait, and finite difference results" loading="lazy">
+          <figcaption data-content-html="part11Caption"></figcaption>
+        </figure>
+
+        <div class="metrics" aria-label="Convolution runtimes">
+          <div class="metric"><strong data-metric="part11.fourSeconds">—</strong><span data-content="fourLoopLabel"></span></div>
+          <div class="metric"><strong data-metric="part11.twoSeconds">—</strong><span data-content="twoLoopLabel"></span></div>
+          <div class="metric"><strong data-metric="part11.scipySeconds">—</strong><span data-content-html="scipyLabel"></span></div>
+        </div>
+        <p class="note" data-content-html="part11Runtime"></p>
+        <div class="metrics four" aria-live="polite">
+          <div class="metric"><strong data-metric="part11.fourError">—</strong><span data-content="fourLoopErrorLabel"></span></div>
+          <div class="metric"><strong data-metric="part11.twoError">—</strong><span data-content="twoLoopErrorLabel"></span></div>
+          <div class="metric"><strong data-metric="part11.fourTest">—</strong><span data-content="fourLoopTestLabel"></span></div>
+          <div class="metric"><strong data-metric="part11.twoTest">—</strong><span data-content="twoLoopTestLabel"></span></div>
+        </div>
+        <p class="note" data-content="part11Boundary"></p>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part12Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content="part12Lead"></p>
+        <p class="equation" data-content="part12Equation"></p>
+        <figure class="figure">
+          <img src="assets/images/projects/project-2/part-1-2/part1_2_results.jpg" alt="Cameraman finite differences, gradient magnitude, and thresholded edges" loading="lazy">
+          <figcaption data-content="part12Caption"></figcaption>
+        </figure>
+        <div class="metrics" aria-live="polite">
+          <div class="metric"><strong data-metric="part12.threshold">—</strong><span data-content="part12ThresholdLabel"></span></div>
+          <div class="metric"><strong data-metric="part12.edgeFraction">—</strong><span data-content="part12EdgeFractionLabel"></span></div>
+          <div class="metric"><strong data-metric="part12.gradientMax">—</strong><span data-content="part12GradientMaxLabel"></span></div>
+        </div>
+        <p class="note" data-content="part12Threshold"></p>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part13Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content-html="part13Lead"></p>
+        <p class="note" data-content-html="part13Method"></p>
+        <pre><code>kernel_1d = cv2.getGaussianKernel(9, 2.0)
+gaussian = kernel_1d @ kernel_1d.T
+blurred = convolve_scipy(image, gaussian)
+dx, dy = finite_differences(blurred)
+magnitude = np.sqrt(dx ** 2 + dy ** 2)</code></pre>
+        <figure class="figure">
+          <img src="assets/images/projects/project-2/part-1-3/part1_3_smoothing_results.jpg?v=2" alt="Gaussian filter, blurred cameraman, gradient magnitude, and smoothed edges" loading="lazy">
+          <figcaption data-content="part13SmoothCaption"></figcaption>
+        </figure>
+
+        <h3 data-content="part13DogHeading"></h3>
+        <p class="note" data-content="part13DogMethod"></p>
+        <pre><code>dog_x = convolve2d(gaussian, DX, mode="full")
+dog_y = convolve2d(gaussian, DY, mode="full")
+
+response_x = convolve_scipy(image, dog_x)
+response_y = convolve_scipy(image, dog_y)
+dog_magnitude = np.sqrt(response_x ** 2 + response_y ** 2)</code></pre>
+        <figure class="figure">
+          <img src="assets/images/projects/project-2/part-1-3/part1_3_dog_results.jpg" alt="Derivative-of-Gaussian filters and comparison of the two gradient methods" loading="lazy">
+          <figcaption data-content="part13DogCaption"></figcaption>
+        </figure>
+        <div class="metrics five" aria-live="polite">
+          <div class="metric"><strong data-metric="part13.kernel">—</strong><span data-content="part13KernelLabel"></span></div>
+          <div class="metric"><strong data-metric="part13.sigma">—</strong><span data-content="part13SigmaLabel"></span></div>
+          <div class="metric"><strong data-metric="part13.threshold">—</strong><span data-content="part13ThresholdLabel"></span></div>
+          <div class="metric"><strong data-metric="part13.interiorError">—</strong><span data-content="part13InteriorErrorLabel"></span></div>
+          <div class="metric"><strong data-metric="part13.edgeDisagreement">—</strong><span data-content="part13DisagreementLabel"></span></div>
+        </div>
+        <p class="note" data-content-html="part13Comparison"></p>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part21Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content-html="part21Lead"></p>
+        <p class="equation" data-content-html="part21Equation"></p>
+        <p class="note" data-content-html="part21Method"></p>
+        <div class="metrics four" aria-live="polite">
+          <div class="metric"><strong data-metric="part21.kernel">—</strong><span data-content="part21KernelLabel"></span></div>
+          <div class="metric"><strong data-metric="part21.sigma">—</strong><span data-content="part21SigmaLabel"></span></div>
+          <div class="metric"><strong data-metric="part21.alpha">—</strong><span data-content="part21AlphaLabel"></span></div>
+          <div class="metric"><strong data-metric="part21.palaceError">—</strong><span data-content="part21PalaceErrorLabel"></span></div>
+        </div>
+
+        <h3 data-content="tajHeading"></h3>
+        <p class="note" data-content="tajExplanation"></p>
+        <div class="view-switcher" data-view-switcher>
+          <div class="view-switcher-controls">
+            <button type="button" data-view-button="process" data-content="processStripLabel"></button>
+            <button type="button" data-view-button="comparison" data-content="directComparisonLabel"></button>
+          </div>
+          <div data-view-panel="process">
+            <div class="gallery four square" data-gallery="tajProcess"></div>
+          </div>
+          <div data-view-panel="comparison" hidden>
+            <div class="gallery comparison square" data-gallery="tajComparison"></div>
+          </div>
+        </div>
+
+        <h3 data-content="tajAlphaHeading"></h3>
+        <p class="note" data-content-html="tajAlphaExplanation"></p>
+        <div class="gallery four square" data-gallery="tajAlpha"></div>
+
+        <h3 data-content="sfStreetHeading"></h3>
+        <p class="note" data-content="sfStreetExplanation"></p>
+        <div class="view-switcher" data-view-switcher>
+          <div class="view-switcher-controls">
+            <button type="button" data-view-button="process" data-content="processStripLabel"></button>
+            <button type="button" data-view-button="comparison" data-content="directComparisonLabel"></button>
+          </div>
+          <div data-view-panel="process">
+            <div class="gallery four tall" data-gallery="sfStreet"></div>
+          </div>
+          <div data-view-panel="comparison" hidden>
+            <div class="gallery comparison tall" data-gallery="sfStreetComparison"></div>
+          </div>
+        </div>
+
+        <h3 data-content="sfSatelliteHeading"></h3>
+        <p class="note" data-content="sfSatelliteExplanation"></p>
+        <div class="view-switcher" data-view-switcher>
+          <div class="view-switcher-controls">
+            <button type="button" data-view-button="process" data-content="processStripLabel"></button>
+            <button type="button" data-view-button="comparison" data-content="directComparisonLabel"></button>
+          </div>
+          <div data-view-panel="process">
+            <div class="gallery four" data-gallery="sfSatellite"></div>
+          </div>
+          <div data-view-panel="comparison" hidden>
+            <div class="gallery comparison" data-gallery="sfSatelliteComparison"></div>
+          </div>
+        </div>
+
+        <h3 data-content="palaceHeading"></h3>
+        <p class="note" data-content-html="palaceExplanation"></p>
+        <div class="gallery three tall" data-gallery="palaceRecovery"></div>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part22Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content="part22Lead"></p>
+        <p class="note" data-content="part22Method"></p>
+        <p class="note" data-content="hybridZoomExplanation"></p>
+        <h3 data-content="derekHeading"></h3>
+        <p class="note" data-content-html="derekExplanation"></p>
+        <div class="gallery hybrid hybrid-pair" data-gallery="derekHybrid" data-hybrid-pair="derek"></div>
+
+        <h3 data-content="cruyffHeading"></h3>
+        <p class="note" data-content-html="cruyffExplanation"></p>
+        <div class="gallery tall" data-gallery="cruyffOriginals"></div>
+
+        <h3 data-content="cruyffProcessHeading"></h3>
+        <div class="gallery hybrid" data-gallery="cruyffAlignment"></div>
+        <div class="gallery hybrid" data-gallery="cruyffFiltered"></div>
+
+        <h3 data-content="cruyffCutoffHeading"></h3>
+        <p class="note" data-content-html="cruyffCutoffExplanation"></p>
+        <h4 data-content="cruyffLowSweepHeading"></h4>
+        <p class="note" data-content-html="cruyffLowSweepExplanation"></p>
+        <div class="gallery three hybrid" data-gallery="cruyffLowCutoffSweep"></div>
+        <h4 data-content="cruyffHighSweepHeading"></h4>
+        <p class="note" data-content-html="cruyffHighSweepExplanation"></p>
+        <div class="gallery three hybrid" data-gallery="cruyffHighCutoffSweep"></div>
+
+        <div class="gallery hybrid hybrid-pair" data-gallery="cruyffFinal" data-hybrid-pair="cruyff"></div>
+
+        <h3 data-content="cruyffFourierHeading"></h3>
+        <p class="note" data-content="cruyffFourierExplanation"></p>
+        <div class="gallery five square" data-gallery="cruyffFourier"></div>
+
+        <h3 data-content="mounetHeading"></h3>
+        <p class="note" data-content-html="mounetExplanation"></p>
+        <div class="gallery tall hybrid-pair" data-gallery="mounetHybrid" data-hybrid-pair="mounet"></div>
+
+        <h3 data-content="morraHeading"></h3>
+        <p class="note" data-content-html="morraExplanation"></p>
+        <div class="gallery tall hybrid-pair" data-gallery="morraHybrid" data-hybrid-pair="morra"></div>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part23Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content="part23Lead"></p>
+        <p class="note" data-content-html="part23Method"></p>
+        <div class="metrics four" aria-live="polite">
+          <div class="metric"><strong data-metric="part23.levels">—</strong><span data-content="part23LevelsLabel"></span></div>
+          <div class="metric"><strong data-metric="part23.sigma">—</strong><span data-content="part23SigmaLabel"></span></div>
+          <div class="metric"><strong data-metric="part23.appleError">—</strong><span data-content="part23AppleErrorLabel"></span></div>
+          <div class="metric"><strong data-metric="part23.orangeError">—</strong><span data-content="part23OrangeErrorLabel"></span></div>
+        </div>
+
+        <h3 data-content="gaussianStacksHeading"></h3>
+        <p class="note" data-content="gaussianStacksExplanation"></p>
+        <div class="gallery five square" data-gallery="appleGaussian"></div>
+        <div class="gallery five square" data-gallery="orangeGaussian"></div>
+
+        <h3 data-content="laplacianStacksHeading"></h3>
+        <p class="note" data-content="laplacianStacksExplanation"></p>
+        <div class="gallery five square" data-gallery="appleLaplacian"></div>
+        <div class="gallery five square" data-gallery="orangeLaplacian"></div>
+
+        <h3 data-content="figure342Heading"></h3>
+        <p class="note" data-content="figure342Explanation"></p>
+        <div class="gallery three square compact" data-gallery="figure342"></div>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content-html="part24Heading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content-html="part24Lead"></p>
+        <p class="equation" data-content-html="part24Equation"></p>
+        <p class="note" data-content-html="part24Method"></p>
+        <div class="metrics four" aria-live="polite">
+          <div class="metric"><strong data-metric="part24.orapleLevels">—</strong><span data-content="part24OrapleLevelsLabel"></span></div>
+          <div class="metric"><strong data-metric="part24.orapleSigma">—</strong><span data-content="part24OrapleSigmaLabel"></span></div>
+          <div class="metric"><strong data-metric="part24.customLevels">—</strong><span data-content="part24CustomLevelsLabel"></span></div>
+          <div class="metric"><strong data-metric="part24.customSigma">—</strong><span data-content="part24CustomSigmaLabel"></span></div>
+        </div>
+
+        <h3 data-content="orapleHeading"></h3>
+        <p class="note" data-content="orapleExplanation"></p>
+        <div class="gallery three square" data-gallery="orapleBlend"></div>
+
+        <h3 data-content="eyeHandHeading"></h3>
+        <p class="note" data-content="eyeHandExplanation"></p>
+        <div class="gallery three tall" data-gallery="eyeHandBlend"></div>
+
+        <h3 data-content="eyeHandStackHeading"></h3>
+        <p class="note" data-content="eyeHandStackExplanation"></p>
+        <div class="gallery three tall compact" data-gallery="eyeHandStack"></div>
+
+        <h3 data-content="moonFrameHeading"></h3>
+        <p class="note" data-content="moonFrameExplanation"></p>
+        <div class="gallery four" data-gallery="moonFrameBlend"></div>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content="lessonHeading"></h2>
+      <div class="part-media">
+        <p class="lead" data-content="lesson"></p>
+      </div>
+    </section>
+
+    <section class="content reveal">
+      <h2 data-content="sourcesHeading"></h2>
+      <div class="part-media">
+        <ul class="source-list" data-source-links></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="project2-content.js?v=21"></script>
+  <script src="project2-metrics-data.js?v=6"></script>
+  <script src="project2-metrics.js?v=5"></script>
+  <script>
+    (() => {
+      const content = window.project2Content || {}
+      document.querySelectorAll('[data-content]').forEach(element => {
+        element.textContent = content[element.dataset.content] || ''
+      })
+      document.querySelectorAll('[data-content-html]').forEach(element => {
+        element.innerHTML = content[element.dataset.contentHtml] || ''
+      })
+      document.querySelectorAll('[data-gallery]').forEach(gallery => {
+        const images = content.galleries?.[gallery.dataset.gallery] || []
+        images.forEach(([path, caption]) => {
+          const figure = document.createElement('figure')
+          const image = document.createElement('img')
+          const label = document.createElement('figcaption')
+          image.src = `assets/images/projects/project-2/${path}`
+          image.alt = caption
+          image.loading = 'lazy'
+          label.textContent = caption
+          if (gallery.dataset.hybridPair && path.includes('_hybrid')) {
+            const openButton = document.createElement('button')
+            openButton.type = 'button'
+            openButton.className = 'hybrid-open'
+            openButton.dataset.hybridOpen = gallery.dataset.hybridPair
+            openButton.dataset.hybridImage = path
+            openButton.dataset.hybridCaption = caption
+            openButton.setAttribute('aria-label', `Open ${caption.toLowerCase()} full view`)
+            openButton.appendChild(image)
+            figure.append(openButton, label)
+          } else {
+            figure.append(image, label)
+          }
+          gallery.appendChild(figure)
+        })
+      })
+      document.querySelectorAll('[data-view-switcher]').forEach(switcher => {
+        const buttons = switcher.querySelectorAll('[data-view-button]')
+        const panels = switcher.querySelectorAll('[data-view-panel]')
+        const setView = view => {
+          buttons.forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.viewButton === view))
+          })
+          panels.forEach(panel => {
+            panel.hidden = panel.dataset.viewPanel !== view
+          })
+        }
+        buttons.forEach(button => {
+          button.addEventListener('click', () => setView(button.dataset.viewButton))
+        })
+        setView('process')
+      })
+      const hybridModal = document.createElement('dialog')
+      const hybridShell = document.createElement('div')
+      const hybridDetails = document.createElement('div')
+      const hybridTitle = document.createElement('h4')
+      const hybridClose = document.createElement('button')
+      const hybridStage = document.createElement('div')
+      const hybridImage = document.createElement('img')
+      const hybridIdentities = document.createElement('p')
+      const hybridFarIdentity = document.createElement('span')
+      const hybridCloseIdentity = document.createElement('span')
+      const hybridControls = document.createElement('label')
+      const hybridFarLabel = document.createElement('span')
+      const hybridSlider = document.createElement('input')
+      const hybridNearLabel = document.createElement('span')
+      hybridModal.className = 'hybrid-modal lightbox'
+      hybridShell.className = 'hybrid-modal-shell'
+      hybridDetails.className = 'hybrid-modal-details'
+      hybridTitle.className = 'hybrid-modal-title'
+      hybridClose.className = 'hybrid-modal-close'
+      hybridClose.type = 'button'
+      hybridClose.textContent = 'Close ×'
+      hybridClose.setAttribute('aria-label', 'Close full view')
+      hybridStage.className = 'hybrid-zoom-stage'
+      hybridIdentities.className = 'hybrid-zoom-identities'
+      hybridControls.className = 'hybrid-zoom-controls'
+      hybridFarLabel.textContent = content.hybridFarLabel
+      hybridNearLabel.textContent = content.hybridNearLabel
+      hybridSlider.type = 'range'
+      hybridSlider.min = '18'
+      hybridSlider.max = '100'
+      hybridSlider.setAttribute('aria-label', content.hybridScaleLabel)
+      const updateHybridSize = () => hybridStage.style.setProperty('--hybrid-size', `${hybridSlider.value}%`)
+      hybridSlider.addEventListener('input', updateHybridSize)
+      hybridClose.addEventListener('click', () => hybridModal.close())
+      hybridModal.addEventListener('click', event => {
+        if (event.target === hybridModal) hybridModal.close()
+      })
+      hybridStage.appendChild(hybridImage)
+      hybridIdentities.append(hybridFarIdentity, hybridCloseIdentity)
+      hybridControls.append(hybridFarLabel, hybridSlider, hybridNearLabel)
+      hybridDetails.append(hybridTitle, hybridIdentities, hybridControls)
+      hybridShell.append(hybridStage, hybridDetails)
+      hybridModal.append(hybridClose, hybridShell)
+      document.body.appendChild(hybridModal)
+      let previousHybridFocus
+      hybridModal.addEventListener('close', () => {
+        hybridImage.src = ''
+        previousHybridFocus?.focus()
+      })
+      document.querySelectorAll('[data-hybrid-open]').forEach(button => {
+        button.addEventListener('click', () => {
+          const demo = content.hybridDemos?.[button.dataset.hybridOpen]
+          if (!demo) return
+          previousHybridFocus = document.activeElement
+          hybridTitle.textContent = `${demo.alt.replace(' hybrid image', '')} · ${button.dataset.hybridCaption}`
+          hybridImage.src = `assets/images/projects/project-2/${button.dataset.hybridImage}`
+          hybridImage.alt = `${button.dataset.hybridCaption}, ${demo.alt}`
+          hybridFarIdentity.textContent = demo.far
+          hybridCloseIdentity.textContent = demo.close
+          hybridSlider.value = String(demo.start)
+          updateHybridSize()
+          hybridModal.showModal()
+          hybridClose.focus()
+        })
+      })
+      const sourceList = document.querySelector('[data-source-links]')
+      const sources = content.sourceLinks || []
+      sources.forEach(source => {
+        const item = document.createElement('li')
+        const link = document.createElement('a')
+        const label = document.createElement('span')
+        link.href = source.url
+        link.target = '_blank'
+        link.rel = 'noopener noreferrer'
+        label.textContent = source.label
+        link.appendChild(label)
+        if (source.resolution) {
+          const resolution = document.createElement('span')
+          resolution.className = 'source-resolution'
+          resolution.textContent = `(${source.resolution})`
+          link.appendChild(resolution)
+        }
+        item.appendChild(link)
+        sourceList.appendChild(item)
+      })
+    })()
+  </script>
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]]},svg:{fontCache:"global"}}</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+  <script src="project-page-effects.js?v=2"></script>
+</body>
+</html>

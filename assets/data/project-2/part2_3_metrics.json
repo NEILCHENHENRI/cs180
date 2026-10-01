@@ -1,0 +1,43 @@
+{
+  "levels": 5,
+  "base_sigma": 2.0,
+  "images": {
+    "apple": {
+      "shape": [
+        300,
+        300,
+        3
+      ],
+      "reconstruction_max_error": 1.1102230246251565e-16
+    },
+    "orange": {
+      "shape": [
+        300,
+        300,
+        3
+      ],
+      "reconstruction_max_error": 2.7755575615628914e-17
+    }
+  },
+  "figure_3_42": {
+    "levels_shown": [
+      0,
+      2,
+      4
+    ],
+    "panels": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l"
+    ]
+  }
+}

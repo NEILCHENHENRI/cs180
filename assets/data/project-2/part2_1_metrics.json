@@ -1,0 +1,42 @@
+{
+  "gaussian_kernel_size": 13,
+  "gaussian_sigma": 2.0,
+  "sharpen_amount": 1.5,
+  "examples": {
+    "taj": {
+      "image_shape": [
+        300,
+        300,
+        3
+      ],
+      "single_filter_vs_addition_max_error": 1.7763568394002505e-15
+    },
+    "sf_street": {
+      "image_shape": [
+        956,
+        640,
+        3
+      ],
+      "single_filter_vs_addition_max_error": 2.220446049250313e-15
+    },
+    "sf_satellite": {
+      "image_shape": [
+        480,
+        640,
+        3
+      ],
+      "single_filter_vs_addition_max_error": 1.7763568394002505e-15
+    }
+  },
+  "palace_recovery": {
+    "image_shape": [
+      1000,
+      750,
+      3
+    ],
+    "blur_kernel_size": 19,
+    "blur_sigma": 3.0,
+    "resharpen_amount": 3.0,
+    "original_vs_resharpened_mean_absolute_error": 0.03707317663196269
+  }
+}

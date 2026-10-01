@@ -1,0 +1,11 @@
+{
+  "gaussian_kernel_size": 9,
+  "gaussian_sigma": 2.0,
+  "edge_threshold": 0.08,
+  "smoothed_edge_pixel_fraction": 0.047273472734727345,
+  "dog_edge_pixel_fraction": 0.047246139128057946,
+  "max_magnitude_difference_all_pixels": 0.3979181556424163,
+  "max_magnitude_difference_interior": 6.800116025829084e-16,
+  "mean_magnitude_difference_interior": 7.168249354967616e-17,
+  "edge_map_disagreement_fraction_interior": 0.0
+}

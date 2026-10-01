@@ -5,9 +5,9 @@ window.project2Metrics = {
     kernel_handling: "kernel flipped vertically and horizontally",
     comparison_implementation: "scipy.signal.convolve2d",
     seconds: {
-      four_loops_9x9: 6.8224374579731375,
-      two_loops_9x9: 0.632674666994717,
-      scipy_9x9: 0.028767416020855308
+      four_loops_9x9: 6.750188124999113,
+      two_loops_9x9: 0.5669003749972035,
+      scipy_9x9: 0.02629012500256067
     },
     max_abs_error_vs_scipy: {
       four_loops_9x9: 1.7763568394002505e-15,

@@ -28,6 +28,7 @@ body,.page,.stage,.metric,.lightbox{
   position:sticky;
   top:0;
   z-index:50;
+  align-items:center;
   background:var(--theme-surface);
   transition:background-color .35s ease,color .35s ease,border-color .35s ease;
 }

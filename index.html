@@ -45,10 +45,10 @@
     }
 
     .topbar{
-      display:grid;
-      grid-template-columns:1fr auto;
+      display:flex;
+      justify-content:flex-end;
       gap:24px;
-      align-items:start;
+      align-items:center;
       padding:18px var(--pad) 12px;
       border-bottom:1px solid var(--line);
       font-size:clamp(12px,.82vw,14px);
@@ -65,40 +65,35 @@
     }
 
     .hero{
-      min-height:820px;
+      --shape-height:clamp(260px,19.3vw,340px);
+      --line-shape-gap:clamp(32px,3.07vw,54px);
+      --shape-name-gap:calc(var(--line-shape-gap) * 1.24);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) min(47vw,700px);
+      grid-template-rows:var(--shape-height) auto;
+      column-gap:24px;
+      row-gap:var(--shape-name-gap);
       position:relative;
-      padding:18px var(--pad) 0;
+      padding:var(--line-shape-gap) var(--pad) 24px;
       overflow:hidden;
     }
 
     .intro{
-      width:min(430px,78vw);
+      width:min(430px,100%);
       font-size:clamp(30px,1.05vw,40px);
       line-height:1.18;
-      position:relative;
+      align-self:center;
+      margin:0;
       z-index:3;
     }
 
     .service-card{
-      position:absolute;
-      right:var(--pad);
-      top:54px;
-      width:min(47vw,700px);
-      height:340px;
+      position:relative;
+      width:100%;
+      height:var(--shape-height);
       background:var(--blue);
       color:var(--paper);
       overflow:hidden;
-    }
-
-    @media (min-width:761px){
-      .intro{
-        position:absolute;
-        top:54px;
-        height:340px;
-        margin:0;
-        display:flex;
-        align-items:center;
-      }
     }
 
     .service-card h2{
@@ -134,9 +129,8 @@
     .p6{left:74%;top:65%;transform:rotate(-14deg)}
 
     .hero-title{
-      position:absolute;
-      left:50%;
-      bottom:24px;
+      grid-column:1/-1;
+      justify-self:center;
       margin:0;
       font-family:var(--display);
       font-weight:500;
@@ -146,7 +140,6 @@
       white-space:nowrap;
       width:max-content;
       text-align:center;
-      transform:translateX(-50%);
       transform-origin:center bottom;
       will-change:transform;
       z-index:2;
@@ -313,17 +306,10 @@
     }
 
     @media (max-width:760px){
-      .topbar{grid-template-columns:1fr}
       .nav{justify-content:flex-start}
-      .hero{min-height:640px}
-      .service-card{
-        top:112px;
-        left:var(--pad);
-        right:auto;
-        width:calc(100% - var(--pad)*2);
-        height:260px;
-      }
-      .hero-title{font-size:clamp(64px,17.5vw,96px)}
+      .hero{display:block;padding:clamp(32px,8vw,54px) var(--pad) 24px}
+      .service-card{display:none}
+      .hero-title{margin:clamp(36px,10vw,56px) auto 0;font-size:clamp(68px,20.5vw,104px)}
       .project-grid,.about{grid-template-columns:1fr}
       .stats{grid-template-columns:repeat(3,1fr)}
       .footer{min-height:330px}
@@ -333,7 +319,7 @@
       html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
       .pill{transform:none!important}
-      .hero-title{transform:translateX(-50%)!important}
+      .hero-title{transform:none!important}
     }
   </style>
   <link rel="stylesheet" href="theme.css?v=2">
@@ -341,9 +327,7 @@
 </head>
 <body>
   <main class="stage">
-    <header class="topbar">
-      <div>Neil Chen · CS 180 · Fall 2026</div>
-    </header>
+    <header class="topbar"></header>
 
     <section class="hero" id="home">
       <p class="intro">
@@ -386,7 +370,25 @@
       const root = document.documentElement;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const hero = document.querySelector('.hero');
+      const heroTitle = document.querySelector('.hero-title');
       const pills = [...document.querySelectorAll('.pill')];
+
+      function fitMobileHeroTitle() {
+        heroTitle.style.fontSize = '';
+        if (!window.matchMedia('(max-width: 760px)').matches) return;
+
+        const styles = getComputedStyle(hero);
+        const availableWidth = hero.clientWidth
+          - parseFloat(styles.paddingLeft)
+          - parseFloat(styles.paddingRight);
+        const currentSize = parseFloat(getComputedStyle(heroTitle).fontSize);
+        const fittedSize = currentSize * availableWidth / heroTitle.scrollWidth;
+        heroTitle.style.fontSize = `${fittedSize}px`;
+      }
+
+      fitMobileHeroTitle();
+      document.fonts.ready.then(fitMobileHeroTitle);
+      addEventListener('resize', fitMobileHeroTitle);
 
       const io = new IntersectionObserver((entries) => {
         for (const entry of entries) {

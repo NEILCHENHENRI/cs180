@@ -1,0 +1,317 @@
+[
+  {
+    "path": "assets/images/projects/project-3/parta/original.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 8,
+    "output": 0,
+    "sha256": "eabd722c52428153667661ff138f9ae6a3e19d988875e7589329a564a195b69d"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/training-inputs.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 10,
+    "output": 0,
+    "sha256": "bcf5fdd25185d8ab9a8b40286a8c7a5a7e5952e43d6de6028a458c3989638a98"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/blur-025.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 12,
+    "output": 0,
+    "sha256": "571b09e3eadd7e71b9d911f9ba333000f704db08771bfb63ed982399c031f163"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/blur-050.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 12,
+    "output": 1,
+    "sha256": "5ab2fec82d9860d9ebb3baa84efc8f9480680ee4ef81e0aebb13aaaf7f5789c2"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/blur-075.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 12,
+    "output": 2,
+    "sha256": "639d9b531996beabd3bbd17135c92c71de2ffa59d2d139334baae51acb18c002"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/one-step-025.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 14,
+    "output": 0,
+    "sha256": "e9a0f4cc11aed66a7ffabb6a59d2b8fb54b304bb5a05d09af67c4a4afda091e0"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/one-step-050.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 14,
+    "output": 1,
+    "sha256": "6c0a26a4e7194e37ba19f80d837d1aef0b94bbd9981e2139480bc121e7a9d9f9"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/one-step-075.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 14,
+    "output": 2,
+    "sha256": "7d3425d449bb169ae748379884055bab15869319a1416d6a486c1d505f4ddf3b"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/velocity-original.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 17,
+    "output": 1,
+    "sha256": "eabd722c52428153667661ff138f9ae6a3e19d988875e7589329a564a195b69d"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/velocity-025.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 17,
+    "output": 2,
+    "sha256": "e13e080b15605ea8abbd291c175c4d3a56cdf39231166145ffd420120cc5197c"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/velocity-050.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 17,
+    "output": 3,
+    "sha256": "99117b3cdbab4c9697252b7cc5c4b2f809ac59fbb4455157ddce897a4d9c3161"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/velocity-075.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 17,
+    "output": 4,
+    "sha256": "4ee0712f8bb1e1ae88fbaa3d35cf20370d8972a3cffaeb97f21938f997772512"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/euler-trajectory.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 19,
+    "output": 0,
+    "sha256": "ed165c30e0104ccc7c2f4e9c181477db42f52440819e5983ceb4ff60665a80ce"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/denoising-comparison.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 19,
+    "output": 1,
+    "sha256": "76888722135a5d8efc9a68fa31bc3d022d3ef675a20df92b1747e08e2bd94a5b"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/conditional-samples.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 21,
+    "output": 0,
+    "sha256": "40f03c5443c219628f03b5bbe1093495012da78a683b393ea2507e101ed69df0"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/cfg-samples.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 24,
+    "output": 0,
+    "sha256": "a617cdd93cf1c978a6dd273db322161389d2018b08a4b7133a3b097f122474ef"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-campanile.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 27,
+    "output": 0,
+    "sha256": "35c75966f1c44914ddc8f05a5b6dd9f0336360ab882247d1f848b63aafc4deae"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-lujiazui.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 27,
+    "output": 2,
+    "sha256": "49666f1a65cae544465028403ea60b26b848c69b55f9bac03ca6eabfa621ef51"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-wukang.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 27,
+    "output": 4,
+    "sha256": "11d8dbe5de8d2ec1ab36e6ee6d8d056497c301fae17395b28f7be1374a56d18a"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-cottage.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 29,
+    "output": 0,
+    "sha256": "41d12d0a6b6a035462c1f67cc54169f6c94bbc193b41592b6ea8213b6d773148"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-lighthouse.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 29,
+    "output": 2,
+    "sha256": "0dca275be3c9add786348158e45a2e7a08dd992814c3630e716dde275120026f"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/edit-mountains.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 29,
+    "output": 4,
+    "sha256": "a08321f8702fa64dcf68a354bd097f30d2bf957c58527afacd508e64b4188347"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/text-campanile.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 31,
+    "output": 0,
+    "sha256": "b1ce5c44c2128a30bce9c7e574b591d99edd2d3159557eaad662c255eb33cec7"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/text-lujiazui.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 31,
+    "output": 2,
+    "sha256": "94d8ceaa592b4033c5c972cd3837ce6eff35a5cea2b7d152aef87058528d1c26"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/text-wukang.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 31,
+    "output": 4,
+    "sha256": "626487a8ae0e4282c1a9f8eec2b01af3e549011535562164aa70a94c8946697f"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/anagram-lotus-chandelier.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 33,
+    "output": 0,
+    "sha256": "16577db76395c07a9aaf1096b59875838573ad576d80a64cd3ed9e3ee0c7bc9b"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/anagram-coral-bouquet.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 33,
+    "output": 1,
+    "sha256": "34ea47cbdfa396d7a6bd663f24c7c2a3074b88f4fd0c5de82a7008a0b483044b"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/hybrid-eye-galaxy.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 35,
+    "output": 1,
+    "sha256": "fa4bedfb086302b368ff1d4fdf3f7b58e67838ceaf63801eb562beaafa77079f"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/hybrid-eye-galaxy-distant.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 35,
+    "output": 3,
+    "sha256": "6b2993e4f9e74aeff7cab7da79c6ce1ab94c659fb67409831747accb6e5475f9"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/hybrid-diamond-snowflakes.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 35,
+    "output": 5,
+    "sha256": "fa91f1cab3210fc89930e0b7c49041720dae1de3b1562932eb80927ed7a0a11b"
+  },
+  {
+    "path": "assets/images/projects/project-3/parta/hybrid-diamond-snowflakes-distant.png",
+    "notebook": "parta_updated.ipynb",
+    "cell": 35,
+    "output": 7,
+    "sha256": "4ac723d47f7185fa4d65c112ee200a1b591e603fbf7d7631f381c3ed64a4ea7c"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/noising-process.png",
+    "notebook": "partb.ipynb",
+    "cell": 14,
+    "output": 0,
+    "sha256": "b866dc3b24c38bd0359a0f8914361db1401c22e2d8b7780aeedc3317949ac034"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/denoising-loss.png",
+    "notebook": "partb.ipynb",
+    "cell": 22,
+    "output": 0,
+    "sha256": "af0e75176f5165e65da50241d84cabd2923b35cee4798cb6d05deab9db16380b"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/denoising-epochs.png",
+    "notebook": "partb.ipynb",
+    "cell": 23,
+    "output": 0,
+    "sha256": "e602a33299cbee3c1fafeb47eb4a481e963a2fb78eb0d1c0332f33bd63cd9038"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/ood-noise.png",
+    "notebook": "partb.ipynb",
+    "cell": 25,
+    "output": 0,
+    "sha256": "959ee934ca2ca5ac702ead6538c02088240dd2b820dc0a5b3be8afa897c7b292"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/pure-noise-loss.png",
+    "notebook": "partb.ipynb",
+    "cell": 28,
+    "output": 0,
+    "sha256": "2f024000558387edca3bab692373a6652976ade5ca940a81067cc63d316d1a9d"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/pure-noise-epochs.png",
+    "notebook": "partb.ipynb",
+    "cell": 29,
+    "output": 0,
+    "sha256": "39e94c7ad05ac55c2b9472f2055ae8e1a88328c35320a049e6b0f4edf0df6387"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/time-conditioned-epochs-loss.png",
+    "notebook": "partb.ipynb",
+    "cell": 41,
+    "output": 0,
+    "sha256": "27a2d5c2bc47c4d2669f79485866e1d081d7efbbfb80eb24c03b332ad0a4afe8"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/class-conditioned-loss.png",
+    "notebook": "partb.ipynb",
+    "cell": 51,
+    "output": 0,
+    "sha256": "60f6fc84eba7053f2dcfb62bc3d3f3f0a29563d9d127a8f99b72955c9ed11927"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/scheduled-epoch-1.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 0,
+    "sha256": "d7dc29f53aae781e25c41ae105493b269b5b3e7b7e10ed0c9c696d109aa96d10"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/scheduled-epoch-5.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 1,
+    "sha256": "0a8824126ce87867b6c4fbf66ac4929656216331ca46eebeecb184a500126b42"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/scheduled-epoch-10.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 2,
+    "sha256": "d5a71621a85d5a29c6b25702d0e38d8031a00f73384925ac68a7bcc598b0081d"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/constant-lr-epoch-1.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 3,
+    "sha256": "217197ba2b87d210490b2d790b00c098329f3708a2e2b5260b328840b6389ddd"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/constant-lr-epoch-5.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 4,
+    "sha256": "8ee74a4cdeb60f661c627252f0b657ae95a3e4b44a78924e3c31fad3963dc14a"
+  },
+  {
+    "path": "assets/images/projects/project-3/partb/constant-lr-epoch-10.png",
+    "notebook": "partb.ipynb",
+    "cell": 53,
+    "output": 5,
+    "sha256": "6e3610ab16a1ffe7c3273a9e7c20986e57f2bba75620d03fbd1ff57b241203ba"
+  }
+]

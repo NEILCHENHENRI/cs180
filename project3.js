@@ -51,7 +51,7 @@
         image.alt = thumbnail.alt;
         caption.textContent = link.closest('figure')?.querySelector('figcaption')?.textContent || image.alt;
       }
-      slider.value = '58';
+      slider.value = '100';
       updateZoom();
       dialog.showModal();
       dialog.scrollTop = 0;

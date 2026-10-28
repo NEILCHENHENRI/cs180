@@ -16,7 +16,7 @@
   reveals.forEach(element => observer.observe(element))
 
   if (window.Lenis && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    new Lenis({
+    window.projectPageScroll = new Lenis({
       autoRaf: true,
       smoothWheel: true,
       lerp: .1,

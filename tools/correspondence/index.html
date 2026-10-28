@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Correspondence Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../theme.css">
+  <script src="../../theme.js"></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div><p class="eyebrow">CS180 / IMAGE MOSAICING</p><h1>Correspondence Tool</h1>
+      <p class="intro">Pick the same landmark in both photos. We’ll keep the coordinates in order.</p></div>
+      <div class="header-links"><a class="project-link" href="../../project4.html#a2" target="_top">Back to Part 4A ↗</a><div class="local"><span></span> Local only · photos stay in your browser</div></div>
+    </header>
+    <section class="toolbar" aria-label="Point controls">
+      <div class="tools"><button id="undo" disabled>↶ Undo</button><button id="delete-mode" aria-pressed="false">Delete pair</button><button id="fit">Fit both</button><button id="clear" disabled>Clear points</button></div>
+      <div class="tools"><label class="button" for="import">Import JSON<input id="import" type="file" accept=".json,application/json" hidden></label><button id="export" class="primary" disabled>Export JSON ↗</button></div>
+    </section>
+    <div class="statusbar"><p id="status" role="status" aria-live="polite">Load two photos to begin.</p><span id="count">0 pairs</span></div>
+    <section class="images" aria-label="Photo correspondence workspace">
+      <article class="panel" id="panel-0">
+        <div class="panel-head"><div><span class="badge">01</span><strong>Source photo</strong></div><label class="button small" for="file-0">Choose photo<input id="file-0" type="file" accept="image/*" hidden></label></div>
+        <div class="viewport" id="view-0"><canvas id="canvas-0" tabindex="0" aria-label="Source photo. Click a landmark to add a point."></canvas><div class="empty">Choose your first photo<span>JPG, PNG, WebP, or another browser-supported image</span></div></div>
+        <div class="panel-foot"><span class="filename" id="name-0">No photo loaded</span><div class="zoom"><button data-side="0" data-zoom="0.8" aria-label="Zoom source out">−</button><span id="zoom-0">—</span><button data-side="0" data-zoom="1.25" aria-label="Zoom source in">+</button></div></div>
+      </article>
+      <article class="panel" id="panel-1">
+        <div class="panel-head"><div><span class="badge">02</span><strong>Reference photo</strong></div><label class="button small" for="file-1">Choose photo<input id="file-1" type="file" accept="image/*" hidden></label></div>
+        <div class="viewport" id="view-1"><canvas id="canvas-1" tabindex="0" aria-label="Reference photo. Click the matching landmark."></canvas><div class="empty">Choose your second photo<span>Use an overlapping view of the same scene</span></div></div>
+        <div class="panel-foot"><span class="filename" id="name-1">No photo loaded</span><div class="zoom"><button data-side="1" data-zoom="0.8" aria-label="Zoom reference out">−</button><span id="zoom-1">—</span><button data-side="1" data-zoom="1.25" aria-label="Zoom reference in">+</button></div></div>
+      </article>
+    </section>
+    <div class="help"><span><kbd>Scroll</kbd> zoom at cursor</span><span><kbd>Drag</kbd> pan</span><span><kbd>Esc</kbd> cancel unfinished point</span><span><kbd>⌘ / Ctrl Z</kbd> undo</span><span><kbd>F</kbd> fit both</span></div>
+    <section class="bottom">
+      <div class="guide"><p class="eyebrow">A FEW GOOD POINTS</p><h2>Corners make good landmarks.</h2><p>Choose sharp, stationary details spread across the overlap. Aim for 8–12 pairs. Avoid points all on one line.</p><p>Click a numbered marker to adjust its position, then click the corrected location. Use “Delete pair” to remove a match from both photos.</p><p class="subtle">Coordinates use the loaded image’s original dimensions, with (0, 0) at the top-left pixel center. Each pair is [x, y]. Resize photos <em>before</em> selecting points if your stitching code uses smaller images.</p></div>
+      <div class="points"><div class="list-head"><h2>Correspondences</h2><span>Original image pixels</span></div><div class="table-scroll"><table><thead><tr><th>Pair</th><th>Source (x, y)</th><th>Reference (x, y)</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="points-body"></tbody></table><p id="table-empty">Your matching points will appear here.</p></div></div>
+    </section>
+    <footer>Inspired by the <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html" target="_blank" rel="noreferrer">CS180 correspondence tool</a>. No installation or internet connection needed.</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

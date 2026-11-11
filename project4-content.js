@@ -1,12 +1,12 @@
 window.project4Content = {
-  "pageDocumentTitle": "Project 4A · Image Warping and Mosaicing · Neil Chen",
+  "pageDocumentTitle": "Project 4 · Image Warping and Mosaicing · Neil Chen",
   "pageAccessibility": {
-    "content": "Manual homographies, inverse warping, image rectification, and feather-blended panoramas."
+    "content": "Image rectification, manual mosaics, and automatic stitching with Harris corners and RANSAC."
   },
   "pageLink": "Skip to results",
   "headerLabel": "Neil Chen · CS 180 · Fall 2026",
   "headerLink": "← Back",
-  "heroDescription": "Project 4 · Part A",
+  "heroDescription": "Project 4 · Parts A and B",
   "heroTitle": "Image Warping<br>&amp; Mosaicing",
   "a1SectionLabel": "A.1<span>Shoot the pictures</span>",
   "a1Description": "I photographed two overlapping sequences: a bay view toward the Golden Gate Bridge and Sausalito, and a view from Emeryville toward Berkeley and the Berkeley Hills. A supplemental mountain pair provides a third mosaic.",

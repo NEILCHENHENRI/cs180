@@ -1,5 +1,51 @@
 (() => {
   const content = window.project4Content || {}
+  const partB = window.project4bContent
+  const partBRoot = document.getElementById('part-b')
+  if (partB && partBRoot) {
+    const { sections, scenes } = partB
+    const figure = (scene, file, [width, height], label, { panorama = false, zoom = true } = {}) => {
+      const src = `assets/images/projects/project-4/partb/${scene.id}/${file}`
+      const image = `<img src="${src}" width="${width}" height="${height}"
+        loading="lazy" alt="${scene.title} · ${label}">`
+      return `<figure class="figure${panorama ? ' panorama' : ''}">
+        ${zoom ? `<a data-image href="${src}">${image}</a>` : image}
+        <figcaption>${label}</figcaption>
+      </figure>`
+    }
+    const gallery = images =>
+      `<div class="gallery two" data-compare-type="images">${images.join('')}</div>`
+    const section = (id, body) => {
+      const { label, title, description } = sections[id]
+      return `<section class="section reveal" id="${id}">
+        <h2 class="section-label">${label}<span>${title}</span></h2>
+        <div class="section-body"><p>${description}</p>${body}</div>
+      </section>`
+    }
+    const sceneFigures = render => scenes.map(scene =>
+      `<h3>${scene.title}</h3>${render(scene)}`).join('')
+    partBRoot.innerHTML = [
+      section('b1', sceneFigures(scene => gallery([
+        figure(scene, 'harris.jpg', scene.cornerSize, `Harris corners · ${scene.corners}`),
+        figure(scene, 'anms.jpg', scene.cornerSize, 'After ANMS · 1,500'),
+      ]))),
+      section('b2', `<p class="note">${sections.b2.caption}</p>` +
+        sceneFigures(scene => figure(scene, 'descriptors.png', [798, 184], 'Source windows and descriptors', { zoom: false }))),
+      section('b3', `<p class="note">${sections.b3.legend}</p>` + sceneFigures(scene =>
+        scene.pairs.map((pair, index) => `
+          <h4>Frames ${index + 1} and ${index + 2}</h4>
+          ${gallery([
+            figure(scene, `pair-${index + 1}-matches.jpg`, scene.matchSize, `Descriptor matches · ${pair.matches}`),
+            figure(scene, `pair-${index + 1}-inliers.jpg`, scene.matchSize,
+              `RANSAC inliers · ${pair.inliers} · ${pair.error} px median reprojection error`),
+          ])}`).join(''))),
+      section('b4', `<p class="note">${sections.b4.comparison}</p>` + sceneFigures(scene =>
+        gallery([
+          figure(scene, 'manual.jpg', scene.mosaicSize, 'Manual correspondences', { panorama: true }),
+          figure(scene, 'automatic.jpg', scene.mosaicSize, 'Automatic correspondences', { panorama: true }),
+        ])) + `<p class="note">${sections.b4.observation}</p>`),
+    ].join('')
+  }
   document.querySelectorAll('[data-content]').forEach(element => {
     const value = content[element.dataset.content]
     if (value !== undefined) element.textContent = value

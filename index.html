@@ -170,6 +170,10 @@
       overflow:hidden;
     }
 
+    .project-wide{
+      grid-column:1/-1;
+    }
+
     .thumb{
       aspect-ratio:4240/2384;
       position:relative;
@@ -177,14 +181,8 @@
       background:#d7d5cc;
     }
 
-    .thumb::after{
-      content:"";
-      position:absolute;inset:0;
-      background:
-        radial-gradient(circle at 65% 38%, rgba(255,255,255,.7), transparent 12%),
-        linear-gradient(135deg, rgba(32,40,180,.12), transparent 40%);
-      mix-blend-mode:multiply;
-      pointer-events:none;
+    .project-wide .thumb{
+      aspect-ratio:2400/988;
     }
 
     .thumb.one{
@@ -366,9 +364,9 @@
           </div>
           <div class="project-meta"><span>Project 3 · Fun with Flow Models</span><span>↗</span></div>
         </a>
-        <a class="project reveal" href="project4.html">
+        <a class="project project-wide reveal" href="project4.html">
           <div class="thumb">
-            <img src="assets/images/projects/project-4/parta/a4_mosaics/waterfronts/preview.jpg" alt="Bay panorama toward the Golden Gate Bridge and Sausalito" loading="lazy">
+            <img src="assets/images/projects/project-4/parta/a4_mosaics/waterfronts/preview.jpg" width="2400" height="988" alt="Bay panorama toward the Golden Gate Bridge and Sausalito" loading="lazy">
           </div>
           <div class="project-meta"><span>Project 4 · Image Warping and Mosaicing</span><span>↗</span></div>
         </a>
